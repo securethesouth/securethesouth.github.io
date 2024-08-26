@@ -1,0 +1,187 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Secure our Southern Border</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		<script src="https://kit.fontawesome.com/488206be4f.js" crossorigin="anonymous"></script>
+	</head>
+	<body class="is-preload">
+	<p style="background-image: url('css/images/overlay.png');" class="top">
+
+
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				<!-- Header -->
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#data" class="active">Our Estimates</a></li>
+							<li><a href="#cta">Support us!</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<header id="header" class="alt">
+							<h1>An overview of immigration under the Biden-Harris administration</h1>
+
+						</header>
+						<!-- Introduction -->
+			 			<!-- Second Section -->
+							<section id="data" class="main special">
+								<ul class="statistics">
+									<li class="style1">
+										<i class="fa-solid fa-door-open fa-2xl"></i>
+										<strong><div class="counter" id="daily-counter">1,080</div></strong> Estimated encounters today
+									</li>
+									<li class="style2">
+										<i class="fa-solid fa-person fa-2xl"></i>
+										<strong><div class="counter" id="total-counter">8,410,951</div></strong> Estimated encounters since '21
+									</li>
+									<li class="style3">
+										<i class="fa-solid fa-magnifying-glass fa-2xl"></i>
+										<strong><div class="counter" id="percentage-counter">0</div></strong></strong> Estimated 'gotaways'
+									</li>
+								</ul>
+							  <div id="facts-container" class="facts-container">
+    								<p id="fact" class="fact"></p>
+								<p class="content">These numbers are simple estimates based on the official, most recent data coming from U.S. Customs and Border Protection(CBP). Whenever they update this data, this site will be updated in accordance to keep our estimates up to date. In June, 130,419 encounters were made on the border - an average of 4,347 per day, or 3 encounters every minute. These numbers are low for the Biden administration, a combination of a common downtick in encounters during these months, and preparation for November's election. So, in most cases, these numbers are a <strong> conservative estimate.</strong> The term “got away” means an unlawful border crosser who— (A) is directly or indirectly observed making an unlawful entry into the United States; (B) <strong>is not apprehended</strong>; and (C) is not a turn back.
+ </strong>
+
+							</section>
+
+
+					
+							<section id="cta" class="main">
+								<div class="spotlight">
+									<div class="content">
+										<header class="major">
+											<h2>Support Us!</h2>
+										</header>
+										<p><strong>Use code FBIDENOMICS for 10% off now!</strong></p><br> Support the cause! 10% of every purchase made will be donated to support our southern border with the <a href="www.borderpatrolfoundation.org"> Border Patrol Foundation!</a>
+										<ul class="actions">
+										</ul>
+									</div>
+									<span class="image"><img src="https://i.imgur.com/U00owsQ.jpeg" alt="" /></span>
+								</div>
+																<footer class="major">
+									<ul class="actions special">
+										<li><a href="generic.html" class="button">Shop Now!</a></li>
+							</section>
+							
+							</dl>
+							<ul class="icons">
+								<li><a href="#" class="icon brands fa-twitter alt"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon brands fa-facebook-f alt"><span class="label">Facebook</span></a></li>						<p class="copyright">&copy; Secure The South, 2024</a>.</p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+<script>
+    function updateCounters() {
+      const dailyCounter = document.getElementById('daily-counter');
+      const totalCounter = document.getElementById('total-counter');
+      const percentageCounter = document.getElementById('percentage-counter');
+      
+      function getDailyCount() {
+        const now = new Date();
+        const cst = new Date(now.toLocaleString("en-US", {timeZone: "America/Chicago"}));
+        const midnight = new Date(cst);
+        midnight.setHours(0, 0, 0, 0);
+        const minutesSinceMidnight = Math.floor((cst - midnight) / 60000);
+        return Math.floor(minutesSinceMidnight * 3);
+      }
+
+      function updateDailyCounter() {
+        const count = getDailyCount();
+        dailyCounter.textContent = count.toLocaleString();
+      }
+
+      function updatePercentageCounter() {
+        let totalCount = parseInt(totalCounter.textContent.replace(/,/g, ''));
+        let percentageCount = Math.floor(totalCount * 0.13);
+        percentageCounter.textContent = percentageCount.toLocaleString();
+      }
+
+      // Update daily counter and percentage counter immediately and then every minute
+      updateDailyCounter();
+      updatePercentageCounter();
+      setInterval(() => {
+        updateDailyCounter();
+        updatePercentageCounter();
+      }, 60000);
+
+      // Simulate real-time updates for total counter and percentage counter
+      setInterval(() => {
+        let totalCount = parseInt(totalCounter.textContent.replace(/,/g, ''));
+        totalCount += Math.floor(Math.random() * 5);
+        totalCounter.textContent = totalCount.toLocaleString();
+        updatePercentageCounter(); // Update percentage counter after total counter is updated
+      }, 5000);
+    }
+
+    function resetDailyCounter() {
+      const now = new Date();
+      const cst = new Date(now.toLocaleString("en-US", {timeZone: "America/Chicago"}));
+      const target = new Date(cst);
+      target.setHours(24, 0, 0, 0);
+      
+      const timeUntilMidnight = target.getTime() - cst.getTime();
+      
+      setTimeout(() => {
+        updateDailyCounter();
+        resetDailyCounter(); // Set up the next reset
+      }, timeUntilMidnight);
+    }
+
+    function updateFact() {
+      const facts = [
+        "Since President Biden and VP Kamala Harris took office, there have been more than 9.5 million encounters nationwide and more than 7.8 million encounters at the Southwest border.",
+        "In FY 2022, CBP processed more than 390 million travelers at ports of entry.",
+        "CBP employs over 60,000 personnel.",
+        "CBP's agriculture specialists intercepted over 1.8 million prohibited plant materials in FY 2022.",
+        "CBP screens nearly 1 million visitors every day.",
+        "In FY 2022, CBP seized over 14,700 pounds of fentanyl.",
+        "CBP conducts operations in 50 countries outside the United States."
+      ];
+      
+      const factElement = document.getElementById('fact');
+      const randomFact = facts[Math.floor(Math.random() * facts.length)];
+      factElement.textContent = randomFact;
+    }
+
+    // Initialize counters and set up reset
+    updateCounters();
+    resetDailyCounter();
+
+    // Update fact immediately and then every 30 seconds
+    updateFact();
+    setInterval(updateFact, 5000);
+
+    // Smooth scrolling for navigation
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+          behavior: 'smooth'
+        });
+      });
+    });
+</script>
+
+	</body>
+</html>
